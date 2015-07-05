@@ -116,13 +116,9 @@ export default React.createClass({
   },
 
   onMapCreated(component) {
-    if (!component) {
-      return;
-    }
+    map = this.refs.Gmaps.getMap();
 
-    map = component.map;
-
-    component.getMap().setOptions({
+    map.setOptions({
       disableDefaultUI: true,
       maxZoom: 18
     });
@@ -138,12 +134,13 @@ export default React.createClass({
 
     return (
       <Gmaps
-        ref={ this.onMapCreated }
+        ref='Gmaps'
         width={'100%'}
         height={'100%'}
         lat={ initialFocus.latitude }
         lng={ initialFocus.longitude }
-        zoom={12}>
+        zoom={12}
+        onMapCreated={ this.onMapCreated }>
       </Gmaps>
     );
   }
